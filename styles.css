@@ -1,60 +1,157 @@
-body, html {
-    margin: 0;
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #faf8ef; /* Podría cambiarse por un tono más oscuro si se busca más contraste */
+    color: #776e65;
+    text-align: center;
     padding: 0;
-    font-family: 'Arial', sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
+
 .game-container {
+    background-color: #e8dfd7; /* Considerar un color más claro o más oscuro para mayor contraste */
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
     max-width: 500px;
-    margin: 20px auto;
-    text-align: center;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25);
+    transition: transform 0.2s;
+}
+
+.game-container:hover {
+    transform: scale(1.02);
+}
+
+.grid {
+    position: relative;
+    width: 100%;
+    height: auto; /* Se cambió para mantener el tamaño proporcional */
+    margin-top: 20px;
+    background-color: #bbada0;
+    border-radius: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    aspect-ratio: 1; /* Asegura que el grid sea siempre cuadrado */
 }
 
 h1 {
     color: #776e65;
+    font-size: 70px;
+    font-weight: 800;
+    margin: 0;
+    text-shadow: 2px 2px #bbada0;
 }
 
 .score-board {
     display: flex;
     justify-content: space-around;
+    align-items: center;
     margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.score-board > div {
+    background-color: #bbada0;
+    border-radius: 5px;
+    padding: 10px;
+    width: 30%;
+    text-align: center;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
 }
 
 #score, #best {
-    border: 2px solid #bbada0;
+    background-color: #bbada0;
+    border-radius: 5px;
     padding: 10px;
     width: 100px;
-    border-radius: 5px;
+    text-align: center;
 }
 
-.grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-}
 
 .grid div {
-    background: #cdc1b4;
-    height: 100px;
+    background-color: #cdc1b4;
+    border-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 40px;
     font-weight: bold;
     color: #776e65;
+    transition: background-color 0.2s, transform 0.2s;
 }
+
+.grid div:not(:empty) {
+    box-shadow: inset 5px 5px 8px #b5aea4,
+                inset -5px -5px 8px #f3ece6;
+}
+
 
 button {
     background-color: #8f7a66;
     color: white;
     border: none;
-    padding: 10px;
-    border-radius: 5px;
+    padding: 15px 30px;
+    border-radius: 7px;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 22px;
+    font-weight: bold;
+    transition: background-color 0.2s;
+    outline: none;
     margin-bottom: 20px;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
 }
+
 
 button:hover {
     background-color: #9f8b76;
+}
+
+#new-game {
+    background-color: #8f7a66;
+    color: #f9f6f2;
+    border: none;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 5px;
+    font-size: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+}
+
+#new-game:hover {
+    background-color: #9f8877;
+}
+
+/* Colores para diferentes valores de las fichas */
+/* Estilos específicos para cada valor de tile */
+.tile-2 { background-color: #eee4da; color: #776e65; }
+.tile-4 { background-color: #ede0c8; color: #776e65; }
+.tile-8 { background-color: #f2b179; color: #f9f6f2; }
+.tile-16 { background-color: #f59563; color: #f9f6f2; }
+.tile-32 { background-color: #f67c5f; color: #f9f6f2; }
+.tile-64 { background-color: #f65e3b; color: #f9f6f2; }
+.tile-128 { background-color: #edcf72; color: #f9f6f2; }
+.tile-256 { background-color: #edcc61; color: #f9f6f2; }
+.tile-512 { background-color: #edc850; color: #f9f6f2; }
+.tile-1024 { background-color: #edc53f; color: #f9f6f2; }
+.tile-2048 { background-color: #edc22e; color: #f9f6f2; }
+/* Añadir más si es necesario */
+
+/* Efecto de "aparecer" para las nuevas fichas */
+@keyframes pop {
+    from { transform: scale(0.5); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Aplicar la animación a las fichas cuando tienen contenido */
+.grid div:not(:empty) {
+    animation: pop 0.2s;
 }
